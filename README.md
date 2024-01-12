@@ -8,3 +8,7 @@
 - เลือก Add File
 - จากนั้น Upload Files
 ![img-2024-01-13-04-51-49](https://github.com/EnterpriseA1/STRC-PRO/assets/128221757/0633399d-e867-475f-8437-d8549ff8db77)
+- กดเลือกไฟล์
+- อธิบายประกอบ (ถ้ามี)
+- จากนั้น Commit changes
+![img-2024-01-13-04-57-06](https://github.com/EnterpriseA1/STRC-PRO/assets/128221757/3dc42136-e043-487f-ba73-501a48739281)

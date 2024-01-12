@@ -1,1 +1,2 @@
-# อย่ายุ่งกับ Main และ อย่าซน
+# SRS LAB 4 IN GRADER
+Scale 7/10

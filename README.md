@@ -1,2 +1,1 @@
-Sudoku Solver
-Using Backtracking algorithm
+--- All DevLab problems goes here ---

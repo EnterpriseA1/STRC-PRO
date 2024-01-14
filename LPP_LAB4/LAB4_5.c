@@ -7,40 +7,35 @@ int main(){
     int max_end = 0;
     int max_start = 0;
     scanf("%d",&n);
-    size_t i;
-    int **arr = malloc(n*sizeof(int * ));
+    int arr[n][2];
+    int i,j;
+    int max_range = 0;
     for (i = 0 ; i < n;i++){
-        arr[i] = malloc(2*sizeof(int));
+        for (j = 0 ; j < 2;j++){
+            scanf("%d",&arr[i][j]);
+            int end = arr[i][j];
+            if (end > max_range){
+                max_range = end;
+            }
+        }
+    }
+    int arr_time[max_range];
+
+    for (i = 0 ; i < max_range; i++){
+        arr_time[i] = 0;
     }
     for (i = 0 ; i < n; i++){
-        int start,end;
-        scanf("%d %d",&start,&end);
-        arr[i][0] = start; arr[i][1] = end;
-        if (end > max_end){
-            max_end = end;
-        }
-        if (start > max_start){
-            
-        }
-    }
-    size_t arr_size = max_end;
-    int *time = malloc(arr_size * sizeof(int));
-    for (i = 0; i < arr_size; i++){
-        time[i] = 0;
-    }
-    for (i = 0; i < n; i++){
-        int start_val = arr[i][0];
-        int end_val = arr[i][1];
-        for (int j = start_val - 1; j < end_val; j++){
-            time[j] += 1;
+        for (j = arr[i][0] ; j <= arr[i][1];j++){
+            arr_time[j]++;
         }
     }
     int max_time = 0;
-    for (i = 0; i < arr_size - 1; i++){
-        printf("%d ",time[i]);
-        if (time[i] > max_time){
-            max_time = time[i];
+
+     for (i = 0 ; i < max_range; i++){
+        if (arr_time[i] > max_time){
+            max_time = arr_time[i];
         }
     }
-    printf("\n%d",max_time);
+    printf("%d",max_time);
+    
 }

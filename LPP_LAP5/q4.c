@@ -1,3 +1,4 @@
+// Integer Version
 #include <stdio.h>
 #include <math.h>
 
@@ -35,4 +36,36 @@ int main(){
         }
     }
     
+}
+// String Version
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include<stdlib.h>
+int main()
+{
+    char st[7];
+    int i, a ,j;
+    scanf("%d", &a);
+    for (int i = 0; i < a; i++)
+    {
+        scanf("%s", st);
+        int sum =0,var=0;
+        for (j = 0; j < strlen(st); j++)
+        {
+            int f;
+
+            f = st[j] - '0';
+            sum = sum + pow(f, strlen(st)) ;
+        }
+        var = atoi(st);
+        if (sum == var){
+            printf("YES\n");
+        }
+        else{
+            printf("NO\n");
+        }
+    }
+
 }

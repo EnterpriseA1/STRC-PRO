@@ -94,5 +94,6 @@ int main(void)
 
     binary(num, bit);
     printf("%d 0b%s\n", decimal(bit), bit);
+
     return 0;
 }

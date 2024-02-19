@@ -29,9 +29,11 @@ int main(){
     int max_count = 1;
     int max_int = 0;
     for (i = 0 ; i < n ;i++){
+        printf("%d : COUNT %d : MAXINT\n",count,max_int);
         if (i == n - 1){
             if (count > max_count){
                 max_count = count;
+                max_int = arr[i];
                 }
         }
         else {

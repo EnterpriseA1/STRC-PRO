@@ -37,7 +37,6 @@ void readStudentData(Student *std)
 void printScore2(Student std[], int n)
 {
 	int i;
-	int j;
 	for (i = 0; i < n; i++)
 	{
 		printf("%s %d\n", std[i].name, std[i].score[1]);

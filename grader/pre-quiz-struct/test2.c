@@ -6,7 +6,7 @@ typedef struct
 	int score[5];
 	float stotal;
 } Student;
-void readStudentData(Student *, int);
+void readStudentData(Student *);
 void printScore2(Student[], int);
 
 void main()
@@ -19,16 +19,16 @@ void main()
 	int i;
 	for (i = 0; i < n; i++)
 	{
-		readStudentData(&std[i], n);
+		readStudentData(&std[i]);
 	}
 	printScore2(&std, n);
 }
 
-void readStudentData(Student *std, int n)
+void readStudentData(Student *std)
 {
 	scanf("%s %s", std->name, std->surname);
 	int i;
-	for (i = 0; i < n; i++)
+	for (i = 0; i < 5; i++)
 	{
 		scanf("%d", &std->score[i]);
 	}
@@ -37,6 +37,7 @@ void readStudentData(Student *std, int n)
 void printScore2(Student std[], int n)
 {
 	int i;
+	int j;
 	for (i = 0; i < n; i++)
 	{
 		printf("%s %d\n", std[i].name, std[i].score[1]);

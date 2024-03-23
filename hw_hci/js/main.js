@@ -43,7 +43,7 @@ const xLabel = g.append("text")
 	.attr("x", WIDTH - MARGIN.LEFT - MARGIN.RIGHT - 80)
 	.attr("font-size", "15px")
 	.attr("text-anchor", "right")
-	.text("Housepower")
+	.text("Horsepower")
 const yLabel = g.append("text")
 	
 	.attr("y", 10)

@@ -1,7 +1,7 @@
 
 const MARGIN = { LEFT: 100, RIGHT: 10, TOP: 10, BOTTOM: 100 }
 const WIDTH = 900 - MARGIN.LEFT - MARGIN.RIGHT
-const HEIGHT = 800 - MARGIN.TOP - MARGIN.BOTTOM
+const HEIGHT = 700 - MARGIN.TOP - MARGIN.BOTTOM
 
 const svg = d3.select("#chart-area").append("svg")
   .attr("width", WIDTH + MARGIN.LEFT + MARGIN.RIGHT)
@@ -27,10 +27,10 @@ const tip = d3.tip()
 g.call(tip)
 const x = d3.scaleLinear()
 	.range([0,HEIGHT])
-	.domain([0, 210])
+	.domain([40, 201])
 const y = d3.scaleLinear()
 	.range([HEIGHT, 0])
-	.domain([0, 50])
+	.domain([12, 50])
 
 const area = d3.scaleLinear()
     .domain([0, 4000])
@@ -40,7 +40,7 @@ const OriginColor = d3.scaleOrdinal(d3.schemePastel1)
 // Labels
 const xLabel = g.append("text")
 	.attr("y", HEIGHT - 5)
-	.attr("x", WIDTH - MARGIN.LEFT - MARGIN.RIGHT - 80)
+	.attr("x", WIDTH - MARGIN.LEFT * 2 - MARGIN.RIGHT * 2 - 65)
 	.attr("font-size", "15px")
 	.attr("text-anchor", "right")
 	.text("Horsepower")
@@ -53,7 +53,7 @@ const yLabel = g.append("text")
 	.text("MPG")
 
 const xAxisCall = d3.axisBottom(x)
-.ticks(8)
+.tickValues([60,80,100,120,140,160,180,200])
 
 g.append("g")
 	.attr("class", "x axis")
@@ -62,11 +62,13 @@ g.append("g")
 
 // Y Axis
 const yAxisCall = d3.axisLeft(y)
+.tickValues([15,20,25,30,35,40,45])
+
 g.append("g")
 	.attr("class", "y axis")
 	.call(yAxisCall)
 
-d3.csv("carsDataset.csv").then(function(data) {
+d3.csv("./carsDataset.csv").then(function(data) {
      formattedData =  data.map(d => {
         return {
             model: d.Model,
@@ -78,7 +80,7 @@ d3.csv("carsDataset.csv").then(function(data) {
             weight: +d.Weight.replace(/,/g, "")
         };
     });
-    update(formattedData);
+    update(formattedData);
 });
 
 
@@ -114,5 +116,5 @@ function update(data) {
         .transition(t)
         .attr("cy", d => y(d.mpg))
         .attr("cx", d => x(d.horsepower))
-        .attr("r", d =>  Math.sqrt(area(d.weight) / Math.PI) / 2)
+        .attr("r", d =>  Math.sqrt(area(d.weight) / Math.PI) / Math.PI)
 }

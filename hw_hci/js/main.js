@@ -78,10 +78,7 @@ d3.csv("carsDataset.csv").then(function(data) {
             weight: +d.Weight.replace(/,/g, "")
         };
     });
-    update(formattedData);
-    area = d3.scaleLinear()
-    .domain([0, d3.max(data, d => d.weight)])
-    .range([25 * Math.PI, 1500 * Math.PI]);
+    update(formattedData);
 });
 
 

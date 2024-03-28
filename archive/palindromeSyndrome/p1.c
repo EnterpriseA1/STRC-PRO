@@ -15,20 +15,32 @@ void splitString(char *string, char *res)
     int length = strlen(string);
     while (i < length)
     {
-        if (*(string + i) != ' ')
+        if (*(string + i) != ' ' || i == length - 1)
         {
             *(res + j) = *(string + i);
             j++;
+            if (i == length - 1){
+                int temp = j;
+                res[j] = '\0';
+                j = 0;
+                printf("%s ", res);
+                for (k = 0; k < temp; k++)
+                {
+                    res[k] = '\0';
+                }
+            }
         }
         else
         {
-            printf("%s", res);
+            int temp = j;
             res[j] = '\0';
-            for (k = 0; k < j; k++)
+            j = 0;
+            printf("%s ", res);
+            for (k = 0; k < temp; k++)
             {
                 res[k] = '\0';
             }
-            j = 0;
+            
         }
         i++;
     }

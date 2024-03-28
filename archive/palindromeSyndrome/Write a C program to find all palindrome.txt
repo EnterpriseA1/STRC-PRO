@@ -1,0 +1,9 @@
+Write a C program to find all palindrome words in a given sentence.
+Your program should prompt the user to enter a sentence and then output all the palindrome words found in that sentence.
+
+For example:
+
+If the user enters: "A man a plan a canal Panama"
+the program should output: "A", "a", "a"
+If the user enters: "Madam, in Eden, I'm Adam"
+the program should output: "Madam"

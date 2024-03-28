@@ -13,18 +13,22 @@ void splitString(char *string, char *res)
 {
     int i = 0, j = 0, k = 0;
     int length = strlen(string);
-    while (i < length)
+    while (i <= length)
     {
-        if (*(string + i) != ' ' || i == length - 1)
+        if (*(string + i) != ' ' && i != length)
         {
             res[j++] = string[i];
+            res[j] = '\0';
         }
         else
         {
             if (j > 0)
             {
                 res[j] = '\0';
-                printf("\"%s\",", res);
+                if (isPalindrome(res))
+                {
+                    printf("\"%s\" ", res);
+                }
                 for (k = 0; k < j; k++)
                 {
                     res[k] = '\0';
@@ -35,6 +39,7 @@ void splitString(char *string, char *res)
         i++;
     }
 }
+
 int isPalindrome(char *string)
 {
     int i, result = 1;

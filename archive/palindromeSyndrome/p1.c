@@ -17,30 +17,20 @@ void splitString(char *string, char *res)
     {
         if (*(string + i) != ' ' || i == length - 1)
         {
-            *(res + j) = *(string + i);
-            j++;
-            if (i == length - 1){
-                int temp = j;
-                res[j] = '\0';
-                j = 0;
-                printf("%s ", res);
-                for (k = 0; k < temp; k++)
-                {
-                    res[k] = '\0';
-                }
-            }
+            res[j++] = string[i];
         }
         else
         {
-            int temp = j;
-            res[j] = '\0';
-            j = 0;
-            printf("%s ", res);
-            for (k = 0; k < temp; k++)
+            if (j > 0)
             {
-                res[k] = '\0';
+                res[j] = '\0';
+                printf("\"%s\",", res);
+                for (k = 0; k < j; k++)
+                {
+                    res[k] = '\0';
+                }
+                j = 0;
             }
-            
         }
         i++;
     }

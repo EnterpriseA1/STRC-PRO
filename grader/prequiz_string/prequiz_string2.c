@@ -1,27 +1,35 @@
 #include <stdio.h>
 #include <string.h>
-void sumNum(char[]);
+int sumNum(char *);
 int main(void)
 {
-    char string[31];
-    gets(string);
+    int n, i;
+    char string[100];
+    char temp[100];
 
-    int i, size = strlen(string);
-    char end[] = "end";
+    fgets(string, 100, stdin);
+    string[strcspn(string, "\n")] = '\0';
+    int condition = sumNum(string);
+    scanf("%d\n", &n);
 
-    char temp[31];
-    while (1)
+    printf("%d\n", condition);
+    for (i = 0; i < n; i++)
     {
-        gets(temp);
-        if (strcmp(temp, end) == 0)
-        {
-            break;
-        }
-        sumNum(temp);
+        fgets(temp, 100, stdin);
+        temp[strcspn(temp, "\n")] = '\0';
     }
+    if (sumNum(temp) == condition)
+    {
+        printf("%s\n", temp);
+    }
+    for (i = 0; i < strlen(temp); i++)
+    {
+        temp[i] = '\0';
+    }
+    fflush(stdin);
 }
 
-void sumNum(char string[])
+int sumNum(char *string)
 {
     int i;
     int sum = 0, check = 0;
@@ -29,17 +37,8 @@ void sumNum(char string[])
     {
         if (string[i] >= '0' && string[i] <= '9')
         {
-            check = 1;
             sum += string[i] - '0';
         }
     }
-
-    if (check)
-    {
-        printf("%d\n", sum);
-    }
-    else
-    {
-        printf("no numbers\n");
-    }
+    return sum;
 }

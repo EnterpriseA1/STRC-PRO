@@ -6,7 +6,7 @@ int main(void)
     gets(string);
 
     int i, size = strlen(string);
-    char end[] = "end";
+    char end[] = "end_of_string";
 
     char temp[31];
     while (1)
@@ -16,9 +16,14 @@ int main(void)
         {
             break;
         }
-        if (strlen(temp) > size)
+        if (strlen(temp) < size)
         {
             printf("%s\n", temp);
+        }
+
+        for (i = 0; i < strlen(temp); i++)
+        {
+            temp[i] = '\0';
         }
     }
 }

@@ -38,19 +38,13 @@ void addRecord(char *someone, char *pnumber)
 
 char *searchPhone(char *name, phoneBook *dir)
 {
-	char *result;
 	int i;
 	for (i = 0; i < 50; i++)
 	{
 		if (strcmp(dir[i].name, name) == 0)
 		{
-			result = dir[i].phoneNumber;
-			break;
-		}
-		else
-		{
-			result = "N/A";
+			return dir[i].phoneNumber;
 		}
 	}
-	return result;
+	return "N/A";
 }

@@ -7,7 +7,7 @@ typedef struct
 	float stotal;
 } Student;
 void readStudentData(Student *, int);
-void printMaxScore(Student *, int);
+void printMaxScore(Student *, int, int);
 
 void main()
 {
@@ -27,7 +27,7 @@ void main()
 	for (i = 0; i < m; i++)
 	{
 		scanf("%d", &index);
-		printMaxScore(&std, index);
+		printMaxScore(&std, index, n);
 	}
 }
 
@@ -42,13 +42,13 @@ void readStudentData(Student *std, int n)
 	}
 }
 
-void printMaxScore(Student *std, int index)
+void printMaxScore(Student *std, int index, int number_of_Student)
 {
 	index = index - 1;
 	int indexName = 0;
 	int max = std[0].score[index];
 	int i;
-	for (i = 0; i < 5; i++)
+	for (i = 0; i < number_of_Student; i++)
 	{
 		if (std[i].score[index] > max)
 		{

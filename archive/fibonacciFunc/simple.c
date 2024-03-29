@@ -2,8 +2,8 @@
 int simpleFib(int);
 int main(void)
 {
-    int n = 5, i;
-    for (i = 0; i <= 5; i++)
+    int n = 8, i;
+    for (i = 0; i < n; i++)
     {
         printf("%d ", simpleFib(i));
     }

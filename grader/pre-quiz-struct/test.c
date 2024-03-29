@@ -7,27 +7,27 @@ typedef struct
 } phoneBook;
 
 void addRecord(char *someone, char *pnumber);
-char *searchPhone(char *name, phoneBook *dir);
+char *searchPhone(char *name, phoneBook dir[]);
 
 void main()
 {
+	int n, i;
 	phoneBook directory[50];
-	int n;
 	scanf("%d", &n);
 
-	int i;
 	for (i = 0; i < n; i++)
 	{
-		addRecord(&directory[i].name, &directory[i].phoneNumber);
+		addRecord(directory[i].name, directory[i].phoneNumber);
 	}
 
-	int searchcount = 0;
-	scanf("%d", &searchcount);
-	char name[64];
-	for (i = 0; i < searchcount; i++)
+	int m;
+	char tempName[64];
+
+	scanf("%d", &m);
+	for (i = 0; i < m; i++)
 	{
-		scanf("%s", name);
-		printf("%s\n", searchPhone(&name, &directory[i]));
+		scanf("%s", tempName);
+		printf("%s\n", searchPhone(tempName, &directory));
 	}
 }
 
@@ -36,7 +36,7 @@ void addRecord(char *someone, char *pnumber)
 	scanf("%s %s", someone, pnumber);
 }
 
-char *searchPhone(char *name, phoneBook *dir)
+char *searchPhone(char *name, phoneBook dir[])
 {
 	int i;
 	for (i = 0; i < 50; i++)

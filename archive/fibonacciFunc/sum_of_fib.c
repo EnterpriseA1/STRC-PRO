@@ -11,7 +11,7 @@ int main(void)
     {
         temp += fib(i);
     }
-    printf("%d", temp);
+    printf("Sum of %d numbers in sequence = %d\n", n, temp);
 }
 int fib(int n)
 {

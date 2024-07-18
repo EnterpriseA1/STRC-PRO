@@ -12,9 +12,9 @@ double secantLine(double xl , double xr){
 }
 
 int main(){
-    double x = 13,n = 4;
+    double x,n;
+    cin>>x>>n;
     double xl = 0.0,xr= 1000000.0;
-    cout<<"xl = "<<xl<<" | xr = "<<xr<<endl;
     double c, temp;
     double tolerance = 1e-4;
     

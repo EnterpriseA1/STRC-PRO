@@ -1,6 +1,5 @@
 #include <iostream>
 #include <math.h>
-#include <iomanip>
 using namespace std;
 
 
@@ -16,7 +15,7 @@ int main(){
     cin>>x>>n;
     double xl = 0.0,xr= 1000000.0;
     double c, temp;
-    double tolerance = 1e-4;
+    double tolerance = 1e-7;
     
     do{
         c = secantLine(xl,xr);
@@ -28,8 +27,7 @@ int main(){
             temp = xl;
             xl = c;
         }
-        cout<<c<<endl;
     }while (abs(f(c,x,n)) > tolerance);         // abs((c - temp)/c)*100 < tolerance;
-    cout<<"Result : "<<std::fixed<<std::setprecision(4)<<c<<'\n';
+    printf("Result : %.4lf\n",c);
 
 }

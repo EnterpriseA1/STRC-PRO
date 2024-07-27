@@ -1,6 +1,5 @@
 #include <iostream>
 #include <math.h>
-#include <iomanip>
 using namespace std;
 
 
@@ -11,12 +10,22 @@ double secantLine(double xl , double xr,double value,int n){
     return (xl*(f(xr,value,n)) - xr*(f(xl,value,n)))/(f(xr,value,n) - f(xl,value,n));
 }
 
+void setInterval(double *xl, double *xr, double value, int n) {
+    *xl = 0;
+    *xr = 1;
+    while (f(*xr, value, n) <= 0) {
+        (*xr)++;
+    }
+    *xl = *xr - 1;
+}
+
 int main(){
     double x,n;
     cin>>x>>n;
-    double xl = 0.0,xr= 1000000.0;
+    double xl,xr;
+    setInterval(&xl, &xr, x, n);
     double c, temp;
-    double tolerance = 1e-4;
+    double tolerance = 1e-6;
     do{
         c = secantLine(xl,xr,x,n);
         if(f(c,x,n) > 0){
@@ -27,8 +36,7 @@ int main(){
             temp = xl;
             xl = c;
         }
-        cout<<c<<endl;
     }while (abs(f(c,x,n)) > tolerance);         // abs((c - temp)/c)*100 < tolerance;
-    cout<<"Result : "<<std::fixed<<std::setprecision(4)<<c<<'\n';
+    printf("Result : %.4lf\n",c);
 
 }

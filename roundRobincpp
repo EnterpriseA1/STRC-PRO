@@ -115,7 +115,6 @@ int main(){
     LinkList *processQueue = new LinkList();
     LinkList *insertQueue = new LinkList();
     int timeQuantum = 3;
-    int processTimer = 0;
     int n;
     int id, arrivalTime, serviceTime;
     cout << "Enter Number of processes: ";

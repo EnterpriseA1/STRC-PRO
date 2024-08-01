@@ -36,24 +36,22 @@ class LinkList{
         }
         void process(int timeQuantum){
             cout<<"Doing process: "<<head->id<<'\n';
-            Node* temp = head;
             int timer = 0;
-            while (temp -> serviceTime > 0 && timer < timeQuantum){
-                (temp->serviceTime)--;
+            while (head->serviceTime > 0 && timer < timeQuantum){
+                (head->serviceTime)--;
                 timer++;
             }
-            if(temp->serviceTime == 0){
-                cout<<"Eliminated Process: "<<temp->id<<endl;
+            if(head->serviceTime == 0){
+                cout<<"Eliminated Process: "<<head->id<<endl;
                 head = head->next;
                 if (head == NULL){
                     tail = NULL;
                 }
             }
             else{
+                Node* incompleteNode = head;
                 head = head->next;
-                temp->next = NULL;
-                insertBack(temp);
-                temp = head;
+                insertBack(incompleteNode);
             }
         }
 		void printQueue(){
@@ -137,7 +135,13 @@ int main(){
     processQueue->printProcess();
     while (processQueue->head != NULL) {
         processQueue->process(timeQuantum);
-        processQueue->printProcess();
+        if (processQueue->head != NULL) {
+            processQueue->printProcess();
+        }
+        else{
+            cout<<"\nAll processes done!"<<endl;
+            break;
+        }
     }
 
     return 0;

@@ -51,6 +51,7 @@ class LinkList{
             else{
                 Node* incompleteNode = head;
                 head = head->next;
+                incompleteNode->next = NULL;
                 insertBack(incompleteNode);
             }
         }
@@ -85,9 +86,9 @@ class LinkList{
         Node* minArrivalNode(){
             Node* temp = head;
             Node* minArrival = NULL;
-            double minArrivalTime = 1e+10;
+            int minArrivalTime = INT_MAX;
             while (temp != NULL){
-                if( temp->arrivalTime < minArrivalTime && temp->arrivalTime >= 0){
+                if( temp->arrivalTime < minArrivalTime){
                     minArrival = temp;
                     minArrivalTime = temp->arrivalTime;
                  }

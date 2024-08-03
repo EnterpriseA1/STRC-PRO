@@ -1,9 +1,9 @@
 #include <iostream>
-using namespace std;
+#include <iomanip>
 int main()
 {
     double x = 0;
-    while (43 * x - 180 <=   0)
+    while (43 * x - 180 <= 0)
     {
         x++;
     }
@@ -16,6 +16,6 @@ int main()
         x = x + 0.000001;
     }
 
-    cout << "x = " << x << endl;
+    std::cout << std::fixed << std::setprecision(6) << "x = " << x << std::endl;
     return 0;
 }

@@ -7,15 +7,12 @@ class Node{
         int id;
         int arrivalTime;
         int serviceTime;
-        bool gotInsert;
         Node(){
-            gotInsert = false;
         }
         Node (int id, int at,int st){
             this->id = id;
             this->arrivalTime = at;
             this->serviceTime = st;
-            this->gotInsert = false;
     }
 };
 class stack{
@@ -41,34 +38,40 @@ class stack{
         void insertNode(int time, Node* arr,int n){
             for (int i = 0 ; i < n ;i++){
                 if (arr[i].arrivalTime == time){
-                    arr[i].gotInsert = true;
                     push(arr[i]);
+                    return;
                 }
             }
             return;
         }
         bool allServiceEmpty(){
-            for (int i = 0 ; i <= top ;i++){
-                if (Stack[i].serviceTime > 0){
-                    return false;
-                }
-            }
-            return true;
+//        	cout<< "Top pointing at ID : " << Stack[top].id<<endl;
+            return Stack[top].serviceTime <= 0;
         }
         void process(int* processTimer,Node* arr,int n){
             int currentProcess = top;
             while (!allServiceEmpty()){
+            	printAll();
+            	insertNode((*processTimer),arr,n);
                 if (Stack[currentProcess].serviceTime <= 0){
-                    pop();
-                    insertNode(*(processTimer),arr,n);
-                    currentProcess = top;
+                    cout<<"Previous pointing to : "<<Stack[currentProcess].id<<endl;
+                    if (currentProcess == 0){	
+                    	currentProcess = top;
+					}
+					else{
+						pop();
+						currentProcess = top;
+					}
+                    cout<<"Now pointing to : "<<Stack[currentProcess].id<<endl;
                 }
-                if (Stack[currentProcess].serviceTime > 0){
-                    cout<<Stack[currentProcess].id<<" : "<<Stack[currentProcess].serviceTime<<endl;
-                    Stack[currentProcess].serviceTime--;
-                }
-                insertNode(++(*processTimer),arr,n);
+                cout<<Stack[currentProcess].id<<" : "<<Stack[currentProcess].serviceTime<<endl;
+                Stack[currentProcess].serviceTime--;
+                cout<<"Cuurent Process Timer : " << *processTimer <<endl;	
+                *(processTimer)++;
+                
+			
             }
+            printAll();
         }
         
         void printAll(){
@@ -92,6 +95,5 @@ int main(){
         arr[i] = process;
     }
     cout<<endl;
-         newStack.insertNode(processTimer,arr,n);
     newStack.process(&processTimer,arr,n);
     ;}

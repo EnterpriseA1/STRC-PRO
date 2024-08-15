@@ -38,6 +38,10 @@ public:
 
 	void insertBefore(int IDindex, int id)
 	{
+		if (foundID(id))
+		{
+			return;
+		}
 		Node *newNode = new Node(id);
 		if (head == NULL)
 		{
@@ -47,27 +51,28 @@ public:
 		}
 		else
 		{
+			if (head->id == IDindex)
+			{
+				newNode->next = head;
+				head = newNode;
+				printA();
+				return;
+			}
 			if (foundID(IDindex))
 			{
-				std::cout << "found : IDindex = " << IDindex << ", id = " << id << std::endl;
 				for (Node *temp = head; temp != NULL; temp = temp->next)
 				{
-					if (temp->id == IDindex && !(foundID(id)))
+					if (temp->next->id == IDindex)
 					{
-						newNode->next = head;
-						head = newNode;
+						newNode->next = temp->next;
+						temp->next = newNode;
 						printA();
-						return;
-					}
-					else
-					{
 						return;
 					}
 				}
 			}
 			else
 			{
-				std::cout << "not found : IDindex = " << IDindex << ", id = " << id << std::endl;
 				for (Node *temp = head; temp != NULL; temp = temp->next)
 				{
 					if (temp->next == NULL)
@@ -83,6 +88,72 @@ public:
 
 	void insertAfter(int IDindex, int id)
 	{
+		Node *newNode = new Node(id);
+		if (head == NULL)
+		{
+			head = newNode;
+			printA();
+			return;
+		}
+		else
+		{
+			if (foundID(IDindex))
+			{
+				for (Node *temp = head; temp != NULL; temp = temp->next)
+				{
+					if (temp->id == IDindex && !(foundID(id)))
+					{
+						newNode->next = temp->next;
+						temp->next = newNode;
+						printA();
+						return;
+					}
+				}
+			}
+			else
+			{
+				for (Node *temp = head; temp != NULL; temp = temp->next)
+				{
+					if (temp->next == NULL)
+					{
+						temp->next = newNode;
+						printA();
+						return;
+					}
+				}
+			}
+		}
+	}
+
+	void deleteNode(int IDindex)
+	{
+		if (head->next == NULL)
+		{
+			printA();
+			return;
+		}
+		if (head->id == IDindex)
+		{
+			head = head->next;
+			printA();
+			return;
+		}
+		if (foundID(IDindex))
+		{
+			for (Node *temp = head; temp != NULL; temp = temp->next)
+			{
+				if (temp->next->id == IDindex)
+				{
+					temp->next = temp->next->next;
+					printA();
+					return;
+				}
+			}
+		}
+		else
+		{
+			return;
+		}
 	}
 
 	void printA()
@@ -99,8 +170,35 @@ public:
 int main()
 {
 	List *list = new List();
-	list->insertBefore(2, 2);
-	list->insertBefore(2, 3);
-	list->insertBefore(2, 3);
-	list->insertBefore(1, 4);
+	char input;
+	int id, index;
+	bool state = true;
+	while (state)
+	{
+		std::cin >> input;
+		switch (input)
+		{
+		case 'D':
+			std::cin >> index;
+			list->deleteNode(index);
+			break;
+		case 'I':
+			std::cin >> id;
+			std::cin >> index;
+			list->insertBefore(index, id);
+			break;
+		case 'A':
+			std::cin >> id;
+			std::cin >> index;
+			list->insertAfter(index, id);
+			break;
+		case 'E':
+			state = false;
+			break;
+		default:
+			break;
+		}
+	}
+
+	return 0;
 }

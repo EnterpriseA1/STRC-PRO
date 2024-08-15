@@ -21,9 +21,10 @@ double newton(double x)
         Dx = -(func(x) / deriv(x));
         x = x + Dx;
         std::cout << "iteration #" << i << " :\t";
-        std::cout << std::fixed << std::setprecision(6) << "x(" << i + 1 << ") = " << x
-                  << ", x(" << i << ") = " << std::fixed << std::setprecision(6) << temp
-                  << ", Error = " << std::abs(Dx / x) << std::endl;
+        std::cout << std::fixed << std::setprecision(6) << "x(" << i << ") = " << temp
+                  << ", x(" << i + 1 << ") = " << std::fixed << std::setprecision(6) << x
+                  << ", Error = " << std::fixed << std::setprecision(6) << std::abs(Dx / x)
+                  << std::endl;
         i++;
 
     } while (std::abs(Dx / x) > 1e-6); // while (std::abs(x - temp) > 1e-6);

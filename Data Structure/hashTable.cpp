@@ -1,20 +1,16 @@
 #include <iostream>
+using std::string;
 class Node
 {
 public:
     int key;
-    char value[10];
+    string value;
     Node *next;
-    Node(int key, char value[10])
+    Node(int key, string value)
     {
         this->key = key;
         int i = 0;
-        while (value[i] != '\0')
-        {
-            this->value[i] = value[i];
-            i++;
-        }
-        this->value[i] = '\0';
+        this->value = value;
         next = NULL;
     }
 };
@@ -27,7 +23,7 @@ public:
     {
         head = NULL;
     }
-    void insert(int key, char value[])
+    void insert(int key, string value)
     {
         Node *newNode = new Node(key, value);
         Node *temp;
@@ -54,7 +50,7 @@ class HashTable
 {
 public:
     LinkedList *arr = new LinkedList[17];
-    void insert(int key, char value[])
+    void insert(int key, string value)
     {
         int index = key % 17;
         arr[index].insert(key, value);
@@ -111,7 +107,7 @@ int main()
 {
     HashTable *ht = new HashTable();
     char input;
-    char msg[10];
+    string msg;
     int key;
     bool state = true;
     while (state)

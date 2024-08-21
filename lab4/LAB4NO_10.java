@@ -28,17 +28,6 @@ public class LAB4NO_10 {
         }
     }
     
-    public static void pathFinding(int time, int[][] lane) {
-        int timerInx = time - 1;
-        ArrayList<Integer> possibleNodes = new ArrayList<>();
-        for (int i = 0 ; i < lane[timerInx].length; i++) {
-            if (lane[timerInx][i] == 0)
-                possibleNodes.add(i);
-        }
-        
-        System.out.println("Possible nodes at time " + time + ": " + possibleNodes);
-    }
-    
 static boolean backtrack(int time, int lane) {
         if (time == t) {
             return true;

@@ -3,10 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package lab6;
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.time.*;
 
 class Date {
     private int day, year;
@@ -92,6 +90,7 @@ class Account {
     }
     
     public void withdraw(double value) {
+        System.out.printf("%s withdraw : %f\n",this.objPerson.getName(),value);
         if (value <= this.balance) {
             this.balance -= value;
         } else {
@@ -100,6 +99,7 @@ class Account {
     }
 
     public void deposit(double value) {
+        System.out.printf("%s deposit : %f\n",this.objPerson.getName(),value);
         if (value > 0) {
             this.balance += value;
         } else {
@@ -136,7 +136,7 @@ class Account {
     @Override
     public String toString() {
         return String.format(
-        "ID: %d\nBalance: %.2f\nInterest: %.2f\nMonthlyInterestRate: %.2f\nCreated on: %s",
+        "\nID: %d\nBalance: %.2f\nInterest: %.2f\nMonthlyInterestRate: %.2f\nCreated on: %s\n",
         id,
         balance,
         getMonthlyInterest(),
@@ -204,7 +204,6 @@ class FixAccount extends Account {
             LocalDate endDate = LocalDate.of(withDraw.getYear(),month_2,withDraw.getDay());
             Period period = Period.between(startDate, endDate);
             if (Math.abs(period.getYears()) >= 1){
-                System.out.println("Condition matched");
                 withdraw(amount);
             }
             else{
@@ -216,32 +215,86 @@ class FixAccount extends Account {
     }
     @Override
     public void transferMoney(Account acc1, double amount) {
-        System.out.println("***Can't transfer money from a Fixed Account.");
+        System.out.println("*** Can't transfer money from a Fixed Account. ***");
     }
 }
 
 public class LAB6NO6 {
     public static void main(String[] args) {
-        SavingAccount customer1 = new SavingAccount(1123, 4.5, 20000, new Date(14, "August", 2024),new Person("Adam","Smith",14,new Date(15,"January",2005)));
-        SavingAccount customer2 = new SavingAccount(1100, 4.5, 20000, new Date(10, "August", 2024),new Person("Myrtle","Smith",14,new Date(10,"Febuary",2005)));
-        customer1.withdraw(2500);
-        System.out.println(customer1);
-        customer1.deposit(3000);
-        System.out.println(customer1);
-        System.out.println("");
-        System.out.println("Before transfer:");
-        System.out.println(customer1);
-        System.out.println(customer2);
-        customer1.transferMoney(customer2, 3000);
-        System.out.println("\nAfter transfer:");
-        System.out.println(customer1);
-        System.out.println(customer2);
-        FixAccount customer3 = new FixAccount(1124,7,20000,new Date(14, "August", 2024),new Person("John","Doe",14,new Date(1,"May",2002)));
+        Scanner inputPerson = new Scanner(System.in);
+//        SavingAccount customer1 = inputAccountDetails(inputPerson);
+//        SavingAccount customer2 = inputAccountDetails(inputPerson);
+//        customer1.withdraw(2500);
+//        System.out.println(customer1);
+//        customer1.deposit(3000);
+//        System.out.println(customer1);
+//        System.out.println("");
+//        System.out.println("Before transfer:");
+//        System.out.println(customer1);
+//        System.out.println(customer2);
+//        customer1.transferMoney(customer2, 3000);
+//        System.out.println("\nAfter transfer:");
+//        System.out.println(customer1);
+//        System.out.println(customer2);
+        FixAccount customer3 = inputFixAccountDetails(inputPerson);
         System.out.println(customer3);
         customer3.deposit(3000);
         customer3.setDepos(new Date(14,"August",2024));
         customer3.withdraw(2000,new Date(10, "August", 2022));
         System.out.println(customer3);
-        customer3.transferMoney(customer2, 3000);
+//        customer3.transferMoney(customer2, 3000);
+    }
+    
+    public static SavingAccount inputAccountDetails(Scanner scanner) {
+        System.out.print("Enter ID: ");
+        int id = scanner.nextInt();
+        System.out.print("Enter Annual Interest Rate: ");
+        double aRate = scanner.nextDouble();
+        System.out.print("Enter Balance: ");
+        double balance = scanner.nextDouble();
+        int day;
+        String month;
+        int year;
+        Date dateCreated = new Date(2, "June", 2017);
+        scanner.nextLine();
+        System.out.print("Enter Person's Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Person's Surname: ");
+        String surname = scanner.nextLine();
+        System.out.print("Enter Person's Age: ");
+        int age = scanner.nextInt();
+        System.out.print("Enter Person's Birth Date (day month [in text] year): ");
+        day = scanner.nextInt();
+        month = scanner.next();
+        year = scanner.nextInt();
+        Date bDate = new Date(day, month, year);
+        Person owner = new Person(name, surname, age, bDate);
+        return new SavingAccount(id, aRate, balance, dateCreated, owner);
+    }
+    public static FixAccount inputFixAccountDetails(Scanner scanner) {
+        System.out.print("Enter ID: ");
+        int id = scanner.nextInt();
+        System.out.print("Enter Annual Interest Rate: ");
+        double aRate = scanner.nextDouble();
+        System.out.print("Enter Balance: ");
+        double balance = scanner.nextDouble();
+        int day;
+        String month;
+        int year;
+        Date dateCreated = new Date(1, "August", 2015);
+        scanner.nextLine(); // Consume newline
+        System.out.print("Enter Person's Name: ");
+        String name = scanner.nextLine();
+        System.out.print("Enter Person's Surname: ");
+        String surname = scanner.nextLine();
+        System.out.print("Enter Person's Age: ");
+        int age = scanner.nextInt();
+        System.out.print("Enter Person's Birth Date (day month [in text] year): ");
+        day = scanner.nextInt();
+        month = scanner.next();
+        year = scanner.nextInt();
+        Date bDate = new Date(day, month, year);
+        Person owner = new Person(name, surname, age, bDate);
+        return new FixAccount(id, aRate, balance, dateCreated, owner);
     }
 }

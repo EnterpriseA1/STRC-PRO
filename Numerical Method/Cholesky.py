@@ -1,5 +1,5 @@
 from fractions import Fraction as Fraction
-from math import sqrt, pow
+from math import *
 
 
 def cholesky(mat, b):
@@ -29,11 +29,13 @@ def cholesky(mat, b):
         lt = [[l[j][i] for j in range(len(l))] for i in range(len(l[0]))]
 
         print("Lower Triangular Matrix")
-        for i in l:
+        l_fac = [[Fraction(a) for a in i] for i in l]
+        lt_fac = [[Fraction(a) for a in i] for i in lt]
+        for i in l_fac:
             print([str(a) for a in i])
         print()
         print("Upper Triangular Matrix")
-        for i in lt:
+        for i in lt_fac:
             print([str(a) for a in i])
         print()
 
@@ -64,9 +66,9 @@ def cholesky(mat, b):
 # ]
 # b = [Fraction(14), Fraction(-101), Fraction(155)]
 mat = [
-    [Fraction(4), Fraction(3), Fraction(1)],
-    [Fraction(3), Fraction(5), Fraction(2)],
-    [Fraction(1), Fraction(2), Fraction(6)],
+    [Fraction(-2), Fraction(3), Fraction(1)],
+    [Fraction(3), Fraction(4), Fraction(-5)],
+    [Fraction(1), Fraction(-2), Fraction(1)],
 ]
-b = [Fraction(3125), Fraction(3150), Fraction(2800)]
+b = [Fraction(9), Fraction(0), Fraction(-4)]
 cholesky(mat, b)

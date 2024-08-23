@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package lab6;
 import java.util.*;
@@ -90,7 +90,7 @@ class Account {
     }
     
     public void withdraw(double value) {
-        System.out.printf("%s withdraw : %f\n",this.objPerson.getName(),value);
+        System.out.printf("\n%s withdraw : %f\n",this.objPerson.getName(),value);
         if (value <= this.balance) {
             this.balance -= value;
         } else {
@@ -99,7 +99,7 @@ class Account {
     }
 
     public void deposit(double value) {
-        System.out.printf("%s deposit : %f\n",this.objPerson.getName(),value);
+        System.out.printf("\n%s deposit : %f\n",this.objPerson.getName(),value);
         if (value > 0) {
             this.balance += value;
         } else {
@@ -222,27 +222,27 @@ class FixAccount extends Account {
 public class LAB6NO6 {
     public static void main(String[] args) {
         Scanner inputPerson = new Scanner(System.in);
-//        SavingAccount customer1 = inputAccountDetails(inputPerson);
-//        SavingAccount customer2 = inputAccountDetails(inputPerson);
-//        customer1.withdraw(2500);
-//        System.out.println(customer1);
-//        customer1.deposit(3000);
-//        System.out.println(customer1);
-//        System.out.println("");
-//        System.out.println("Before transfer:");
-//        System.out.println(customer1);
-//        System.out.println(customer2);
-//        customer1.transferMoney(customer2, 3000);
-//        System.out.println("\nAfter transfer:");
-//        System.out.println(customer1);
-//        System.out.println(customer2);
+        SavingAccount customer1 = inputAccountDetails(inputPerson);
+        SavingAccount customer2 = inputAccountDetails(inputPerson);
+        customer1.withdraw(2500);
+        System.out.println(customer1);
+        customer1.deposit(3000);
+        System.out.println(customer1);
+        System.out.println("");
+        System.out.println("Before transfer:");
+        System.out.println(customer1);
+        System.out.println(customer2);
+        customer1.transferMoney(customer2, 1000);
+        System.out.println("\nAfter transfer:");
+        System.out.println(customer1);
+        System.out.println(customer2);
         FixAccount customer3 = inputFixAccountDetails(inputPerson);
         System.out.println(customer3);
         customer3.deposit(3000);
         customer3.setDepos(new Date(14,"August",2024));
         customer3.withdraw(2000,new Date(10, "August", 2022));
         System.out.println(customer3);
-//        customer3.transferMoney(customer2, 3000);
+        customer3.transferMoney(customer2, 3000);
     }
     
     public static SavingAccount inputAccountDetails(Scanner scanner) {
@@ -263,11 +263,11 @@ public class LAB6NO6 {
         String surname = scanner.nextLine();
         System.out.print("Enter Person's Age: ");
         int age = scanner.nextInt();
-        System.out.print("Enter Person's Birth Date (day month [in text] year): ");
-        day = scanner.nextInt();
-        month = scanner.next();
-        year = scanner.nextInt();
-        Date bDate = new Date(day, month, year);
+//        System.out.print("Enter Person's Birth Date (day month [in text] year): ");
+//        day = scanner.nextInt();
+//        month = scanner.next();
+//        year = scanner.nextInt();
+        Date bDate = new Date(5, "June", 2017);
         Person owner = new Person(name, surname, age, bDate);
         return new SavingAccount(id, aRate, balance, dateCreated, owner);
     }
@@ -282,18 +282,18 @@ public class LAB6NO6 {
         String month;
         int year;
         Date dateCreated = new Date(1, "August", 2015);
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
         System.out.print("Enter Person's Name: ");
         String name = scanner.nextLine();
         System.out.print("Enter Person's Surname: ");
         String surname = scanner.nextLine();
         System.out.print("Enter Person's Age: ");
         int age = scanner.nextInt();
-        System.out.print("Enter Person's Birth Date (day month [in text] year): ");
-        day = scanner.nextInt();
-        month = scanner.next();
-        year = scanner.nextInt();
-        Date bDate = new Date(day, month, year);
+//        System.out.print("Enter Person's Birth Date (day month [in text] year): ");
+//        day = scanner.nextInt();
+//        month = scanner.next();
+//        year = scanner.nextInt();
+        Date bDate = new Date(6, "June", 2012);
         Person owner = new Person(name, surname, age, bDate);
         return new FixAccount(id, aRate, balance, dateCreated, owner);
     }

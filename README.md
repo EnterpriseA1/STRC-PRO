@@ -1,4 +1,4 @@
-# อย่ายุ่งกับ Main และ อย่าซน
+# อย่ายุ่งกับ Main และ อย่าซน THIS IS TRESUARY NOT FOR ONLY STRC PRO ANYMORE
 **วิธีใช้**
 - เลือก branch
 - เลือกไฟล์ประมาณนี้

@@ -55,7 +55,7 @@ public:
         insertNode(*(processTimer),arr,n);
         int currentProcess = top;
         while (!allServiceEmpty()) {
-            if ( Stack[currentProcess].serviceTime <= 0) {
+            if ( Stack[currentProcess].serviceTime < 1) {
                 if (currentProcess != top){
                     currentProcess = top;
                 }
@@ -64,9 +64,11 @@ public:
                     currentProcess = top;
                 }
             } 
-            cout << Stack[currentProcess].id << " : " << Stack[currentProcess].serviceTime << endl;
-            Stack[currentProcess].serviceTime--;
-            insertNode(++(*processTimer), arr, n);
+            else{
+                cout << Stack[currentProcess].id << " : " << Stack[currentProcess].serviceTime << endl;
+                Stack[currentProcess].serviceTime--;
+                insertNode(++(*processTimer), arr, n);
+            }
         }
     }
 };

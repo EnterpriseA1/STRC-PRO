@@ -1,13 +1,14 @@
 #include <iostream>
+using std::string;
 class Node
 {
 public:
-    int pid;
+    string pid;
     int arriv;
     int serv;
     Node()
     {
-        pid = INT_MIN;
+        pid = "";
         arriv = INT_MIN;
         serv = INT_MIN;
     }
@@ -60,24 +61,24 @@ public:
     {
         Stackk s;
         int totalService = totalServ();
-        int i = 0;
-        while (i <= totalService)
+        int current_service = 0;
+        while (current_service <= totalService)
         {
-            if (i == process[top].arriv && (!empty()))
+            if (current_service == process[top].arriv && (!empty()))
             {
                 s.push(pop());
                 int replicaTop = s.top;
                 int servTime = s.process[replicaTop].serv;
-                int pid = s.process[replicaTop].pid;
+                string pid = s.process[replicaTop].pid;
                 for (int j = 0; j < servTime; j++)
                 {
-                    if (i == process[top].arriv && (!empty()))
+                    if (current_service == process[top].arriv)
                     {
                         s.push(pop());
                     }
                     std::cout << pid << " : " << s.process[replicaTop].serv << std::endl;
                     s.process[replicaTop].serv--;
-                    i++;
+                    current_service++;
                     if (s.process[s.top].serv <= 0)
                     {
                         s.pop();
@@ -93,12 +94,12 @@ public:
                 else
                 {
                     int servTime = s.process[s.top].serv;
-                    int pid = s.process[s.top].pid;
+                    string pid = s.process[s.top].pid;
                     for (int j = 0; j < servTime; j++)
                     {
                         std::cout << pid << " : " << s.process[s.top].serv << std::endl;
                         s.process[s.top].serv--;
-                        i++;
+                        current_service++;
                     }
                     if (s.process[s.top].serv <= 0)
                     {

@@ -71,7 +71,7 @@ matI = identityMatrix(len(mat))
 for i in matI:
     print([str(output) for output in i])
 print()
-print("Matrix A (Augmented)")
+print("Matrix A")
 for i in mat:
     print([str(output) for output in i])
 print()

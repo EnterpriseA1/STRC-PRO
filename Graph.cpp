@@ -1,6 +1,5 @@
 #include <iostream>
 #include <queue> 
-#define queuesize 100
 using namespace std;
 
 class Vertex {

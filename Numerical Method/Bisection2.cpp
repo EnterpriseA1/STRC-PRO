@@ -6,8 +6,8 @@ double func(double);
 void bisection(double, double);
 int main()
 {
-    double left = 1.5;
-    double right = 2.0;
+    double left = -3.0;
+    double right = 0.0;
     bisection(left, right);
 }
 double func(double x)
